@@ -46,6 +46,13 @@ This is where I will start writing my paper. Below is a rough outline. It will c
 
 # Numerical Examples
 
+# Section with Math
+
+This is some latex: $\mu$ and $\sigma$
+
+This is an equation:
+
+
 
 <!--
 # References

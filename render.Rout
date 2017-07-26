@@ -42,4 +42,4 @@ Output created: draft.pdf
 > 
 > proc.time()
    user  system elapsed 
-  1.160   0.788   3.059 
+  1.116   0.696   1.205 
