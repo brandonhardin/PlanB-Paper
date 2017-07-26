@@ -1,2 +1,2 @@
 library(rmarkdown)
-render("draft2.Rmd")
+render("draft.Rmd")

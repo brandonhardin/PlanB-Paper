@@ -1,0 +1,58 @@
+---
+output: 
+  pdf_document:
+    citation_package: natbib
+    keep_tex: true
+    fig_caption: true
+    latex_engine: pdflatex
+    template: ./svm-latex-ms.tex
+title: "Implementing the Heston Option Pricing Model in Object-Oriented Cython"
+author:
+- name: Brandon C. Hardin 
+  affiliation: Utah State University
+abstract: "Abstract goes here!"
+keywords: "Heston, Python, Cython"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+geometry: margin=1in
+fontfamily: mathpazo
+fontsize: 11pt
+spacing: double
+bibliography: ./master.bib
+biblio-style: apsr
+---
+
+# Introduction
+
+This is where I will start writing my paper. Below is a rough outline. It will change as I need it to. 
+
+## The Heston Model
+
+## Monte Carlo Simulation
+
+## Python Programming Language
+
+# Implementing Option Pricing Models in Python
+
+## Python 
+
+## Cython
+
+## Object-Oriented Programming
+
+## Design Patterns in Computational Finance
+
+
+# The Heston Model in Cython
+
+# Numerical Examples
+
+
+<!--
+# References
+\setlength{\parindent}{-0.2in}
+\setlength{\leftskip}{0.2in}
+\setlength{\parskip}{8pt}
+\vspace*{-0.2in}
+\noindent
+-->
+
