@@ -1,0 +1,139 @@
+---
+output: 
+  pdf_document:
+    citation_package: natbib
+    keep_tex: true
+    fig_caption: true
+    latex_engine: pdflatex
+    template: ./svm-latex-ms.tex
+title: "The Morality of Arbitrage"
+author:
+- name: Tyler J. Brough
+  affiliation: Utah State University
+abstract: "In this paper, I argue that one cannot rationally believe that financial arbitrage is an inherently immoral pursuit, while simultaneously believing that the pursuit of academic knowledge is an inherently moral pursuit. I argue that these two seemingly separate activities are really one and the same. Further those that do hold such contradictory beliefs are behaving incoherently and have a Dutch book made against them."
+keywords: "arbitrage, Dutch books, morality"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+geometry: margin=1in
+fontfamily: mathpazo
+fontsize: 11pt
+spacing: double
+bibliography: ./master.bib
+biblio-style: apsr
+---
+
+> [T]he shipper who earns his living from using otherwise empty or half-filled journeys of tramp-steamers, or the estate
+> agent whose whole knowledge is almost exclusively one of temporary opportunities, or the *arbitrageur* who gains from
+> local differences of commodity prices, are all performing eminently useful functions based on special knowledge of
+> circumstances of the fleeting moment not known to others.
+	-- F.A. Hayek
+
+# Introduction
+
+The pursuit of knowledge through academic scholarship rests on a commonly held moral foundation. The pursuit of truth, which is widely believed to be the goal of scholarship, is thought to be an inherently moral activity. At the same time, it is an increasingly widely held belief that financial market arbitrage, the kind pursued by Wall Street traders, is an inherently immoral activity. Take for example, the case of the quantitative proprietary trading firm which serves no clients and which invests only the capital of its principals. Such a firm makes its profits, often astonishingly large profits, by buying and selling financial securities and profiting from speculation. A common line of reasoning is that such a firm is predatory, parasitic, and even rapacious and as such cannot possibly be acting morally. 
+
+In this paper, I argue that one cannot simultaneously hold the above two positions without behaving incoherently. The process of scholarship and financial trading are both examples of finding and exploiting Dutch books. Dutch books are simply arbitrage by another name. Thus scholarship can be seen, indeed is most properly seen, as a form of intellectual arbitrage. Just as traders find mispricings in financial securities and exploit them for financial profit, scholars find misunderstandings - mispricings by another name - and exploit them to establish their scholarly reputation. 
+
+The paper is organized as follows. I outline an original discussion due to @Coase1974 of the "market for ideas" and the "market for goods," and discuss his conclusion that their different treatment is incongruous in Section 2. I then discuss the idea, due to @Hayek1945, that the economic process is an information process in its most essential treatment in Section 3. In Section 4 I outline the concept of subjective probability following @deFinetti1937, as well as arbitrage choice theory put forward by @Nau1999. In Section 5 I explain the Dutch Book Theorem as essential background to my argument. I give a few chosen examples of scholarly debates framed as Dutch Book arguments in Section 6. In Section 7 I present my own Dutch book argument. Section 8 concludes the paper. 
+
+
+# The Market for Goods and the Market for Ideas
+
+@Coase1974 points out that there has been a common tradition of drawing a sharp distinction between the "market for goods" and the "market for ideas." The "market for ideas" is the domain of intellectuals and consists of speech, writing, and religious belief - activities covered by the First Amendment. Coase notes that the common view has been that the "market for goods" requires extensive regulation to promote public interest, while the "market for ideas" would be greatly harmed by such regulatory activity. He writes "the Western world, by and large, accepts the distinction and the policy recommendations that go with it." For Coase, such an attitude is unjustified.
+
+Coase writes that "... belief in a free market in ideas does not have the same roots as belief in the value of free trade in goods." And further that, "... this view of the peculiar status of the market for ideas has been nourished by a commitment to democracy as exemplified in the political institutions of the United States, for whose efficient working a market in ideas not subject to government regulation is considered essential." Speaking of intellectuals Coase highlights that "intellectuals have shown a tendency to exalt the market for ideas and to depreciate the market for goods." But why should this differential treatment be so? For Coase the distinction is invalid as "[t]here is no fundamental difference between these two markets." He goes on to argue that we should use the same approach for all markets when deciding upon public policy. 
+
+For Coase the explanation for the tendency on the part of intellectuals to make a sharp distinction between the two markets is self-interest and self-esteem. In offering this explanation, he echoes the Public Choice literature: self-interest leads intellectuals to see themselves as the experts who will plan and implement the regulation of the market for goods, while self-esteem causes them to deny any role for regulation of their domain - the market for ideas. Coase urges intellectuals to "... adopt a more consistent view."[^1] Expressing his dismay at this situation he writes:
+
+> It is hard to believe that the general public is in a better position to evaluate competing views on economic and social policy than to choose between different kinds of food.
+
+Indeed, this is puzzling, as is the distinction between the ethical underpinnings of the two markets. The discussion in @Coase1974 is helpful in framing the current discussion. Most essential is the perspective that intellectuals operate within a market setting when producing and promoting their ideas.[^2] The sharp distinction between the two markets when it comes to the role of government regulation parallels the common sharp distinction of their respective moral nature. When the scholar operates in the "market for ideas" it is commonly believed that her efforts are inherently ethical, resting on a long history and strong tradition of common moral values. While it is often the case, especially among intellectuals, to depreciate the moral value of capitalist enterprise that is the domain of the financial trader. Echoing Coase I argue below that this practice is unfounded, and I urge the adoption of a more consistent view as there is no fundamental difference between the two activities. They are both examples of arbitrage within their respective domains. 
+
+
+# The Informational Role of Prices
+
+
+Once the domain of intellectuals is seen as a market - the "market for ideas" - we can inquire about the special nature of markets to better understand their ethical foundation. The essential element is that competitive markets are mediated by prices, and prices serve as signals of information. As @Grossman1989 writes "[i]t is a common theme of most discussions of the competitive price system that prices convey information."[^3] This concept in its original formulation is due to @Hayek1945, who wrote
+
+> ***We must look at the price system as ... a mechanism for communicating information if we want to understand its real function***... The most significant fact about this system is the economy of knowledge with which it operates, or how little the individual participants need to know in order to be able to take the right action ... by a kind of symbol, only the most essential information is passed on..."
+
+For Hayek, the essential element of markets is that they are information systems, as we might say in the modern parlance.[^4] Hayek wrote in the midst of the so-called socialist calculation debate. The Polish economist Oskar Lange (see @Lange1936 and @Lange1937) argued that taking mathematical models of neoclassical economics seriously, the competitive allocation of the market could be replicated by a central planner making socialism a viable economic system. Hayek vehemently opposed this view highlighting that the would-be central planner faces an insurmountable knowledge problem because the knowledge that must be made use of for such planning is dispersed widely among many people, who each possess only an incomplete and partial knowledge.[^x] 
+
+Similar to Coase, Hayek points out the tendency of some to make a sharp distinction between different kinds of knowledge. He writes "one kind of knowledge, namely, scientific knowledge, occupies now so prominent a place in public imagination that we tend to forget that it is not the only kind that is relevant." Indeed, by taking advantage of relative mispricings among commodities the financial trader benefits his fellow men by allocating resources more efficiently. But this is hardly viewed as a noble act, not nearly so noble as scientific discovery or academic expression. Hayek saw keenly the situation:
+
+> It is a curious fact that this sort of knowledge should today be generally regarded with a kind of contempt, and that someone who by such knowledge gains an advantage over somebody better equipped with theoretical or technical knowledge is thought to have acted almost disreputably. To gain advantage from better knowledge of facilities of communication or transport is sometimes regarded as almost dishonest, although it is quite as important that society make use of the best opportunities in this respect as in using the latest scientific discoveries.
+
+The lesson regarding the relative importance of different kinds of knowledge that Hayek teaches is a very deep one. Indeed, when this insight is fully appreciated one begins to see that the use of mundane kinds of knowledge - Hayek's "knowledge of time and place" is essential. It is not exaggeration to state that if the only knowledge that society could usefully exploit was that from universities, the press, literature and science we would all starve to death in very short order. The financial arbitrageur is a perfect example of Hayek's "man on the spot" and his actions benefit his fellows greatly. Still, when one thinks of the abstract concept of the pursuit of knowledge, images of the scientist in the lab or of the scholar in the library come more easily to mind than the trader scanning prices on his bank of monitors. But for Hayek:
+
+> the *arbitrageur* who gains from local differences of commodity prices, [is] performing [an] eminently useful function based on special knowledge of circumstances of the fleeting moment not known to others.
+
+The actions of the arbitrageur are indeed eminently useful! Consider the commodities that we require in our daily lives such as sugar, coffee, wheat, milk, and oil that come to us more efficiently and at lower cost than would otherwise be the case if not for the actions of commodity traders. In addition, because of financial traders retirement is secured more soundly through investment. And risks are insured against, eliminated and transferred through financial markets that we would otherwise have to bear. 
+
+Hayek compared the price system to "a kind of machinery for registering change" and as a "system of telecommunications." Similarly, @Scarf1990 has made an analogy between the market institution and a massively distributed analog computer that computes values in the form of prices. Following this line of reasoning, all market processes are knowledge processes. Therefore there is no sharp distinction between the "market for ideas" and the "market for goods", as Coase referred to them. They are simply both markets and differ only in their relative kinds of knowledge. @Sowell1996 has made this point quite succinctly:
+
+> While market economies are often thought of as money economies, they are still more so knowledge economies... Economic transactions are purchases and sales of knowledge.
+
+> After all, the cavemen had the same natural resources at their disposal as we have today... We are all in the business of buying and selling knowledge from one another, because we are each so profoundly ignorant of what it takes to complete the whole process of which we are part.
+
+My argument, echoing Coase and augmented by a sound understanding of market processes as information processes from Hayek, is that we should adopt a more coherent view of the ethical and moral foundations of both markets, for they are fundamentally of the same nature. 
+
+
+# Arbitrage Choice Theory
+
+
+The link between the market for ideas and the market for goods is further strengthened by considering the work of the decision theorist Robert Nau. For example, @NauMcCardle1991 state that the principle of no-arbitrage, which is fundamental in finance theory, is the common foundation of decision theory, game theory and competitive market theory. @Nau1999 refers to this as *arbitrage choice theory* (ACT), following the Bayesian Dutch book arguments of @deFinetti1937. A Dutch book is a situation in which an individual holds incoherent beliefs (beliefs inconsistent with the basic axioms of probability), and if forced to bet on them exposes themselves to a guaranteed loss. When market transactions are seen as knowledge transactions, it becomes clear that a Dutch book is equivalent to arbitrage - the good old fashioned kind often derided from the world of finance. In ACT "... no-arbitage is the core principle of rationality which remains after economic models are stripped of their excess baggage of intrinsically unverifiable or empirically disconfirmed assumptions..." The arbitrageur is Hayek's "man on the spot" who provides a useful informational service by correcting incoherent price signals. This is as true for commodities and financial assets as well as for scholarly articles, bestsellers, speeches, and conference presentations.
+
+When a trader makes a profit by simultaneously buying and selling financial securities to exploit relative mispricings, this arbitrage is simply the exploitation of a Dutch book expressed as incoherent market prices. Likewise the intellectual pursuit of knowledge, what Coase called the "market for ideas" can be seen as the pursuit of arbitrage, or Dutch books, in the existing body of academic knowledge. Consider a young scholar who discovers an error in the received theory of their specific academic domain, and who makes a name for themselves by publishing an article correcting the error in a reputable academic journal. This can now be easily understood to be the exploitation of a Dutch book, or intellectual arbitrage. 
+
+
+## The Dutch Book Theorem Explained
+
+
+For de Finetti probability represents the subjective beliefs of the agent. As @Nau2001 explains: "probability does not exist *objectively*, independently of the human mind. [P]robability ... is a rate at which an individual is willing to *bet on* the occurence of an event. Betting rates are the primitive measurements that reveal *your* probabilities or *someone else's* probabilities, which are the only probabilities that really exist." de Finettie tool a very operational view of eliciting probabilities. In his theory, "bets are for money, so your probability of an event is effectively the *price* that you are willing to pay for a lottery ticket that yields $1$ unit of money if the event occurs and nothing otherwise." The reader trained in economics or finance will notice the connection to the state-price theory of decision making under uncertainty of @Arrow1964 and @Debreu1959.[^y] Coherence in de Finetti's definition of probability is the counterpart of the modern theory of no-arbitrage in finance.[^5]  
+
+The axioms of probability which characterize any valid theory of probability arise logically from the
+condition that subjective probabilities function as prices obeying coherency (i.e. the arbitrage free
+conditions). Looking at problems of uncertainty as situations in which various contingent claims are traded is the key insight offered by the state-preference theory. ACT differs from the Arrow-Debreu setting in that probabilities and utilities are non-separable, and only de Finetti's *previsions* are observable. In the modern parlance of financial economics these are *risk-neutral probabilities* (the product of state-dependent subjective probabilities and utilities). ACT relaxes the stance of methogological individualism of the neoclassical trading. Rationality characterizes a market-level phenomenon rather than individual behavior. Agents learn to be rational by adopting the market's risk-neutral density as their prior through the market exchange process. The connection to the information process in the Hayekian setting becomes clear: prices convey information and represent agents' subjective beliefs. 
+
+With this discussion of subjective probability and ACT as background we can now discuss the Dutch Book Theorem. The dictionary definition of a Dutch book is the following:
+
+> "A principle for dynamic decision-making situations that leads to a sequence of bets finishing in an inescapable loss, as in the case of a bookmaker always gaining from gambling on the outcome of horse races."[^n].
+
+The following example serves to demonstrate the principle. Consider agent A's degree of belief regarding the flipping of a fair coin. The event space is represented by $S = \{H, T\}$ where $H$ represents 'heads' and $T$ represents 'tails.' Suppose A's degrees of belief are expressed as probabilities: $P(H) = 0.51 \quad \mbox{and} \quad P(T) = 0.51$. That is, A is willing to pay $\$0.51$ to receive $\$1$ in the event of a 'heads', and also $\$0.51$ to receive $\$1$ in the event of a 'tails.' It is easy to see that A is acting incoherently. The bookmaker will be willing to take both bets simultaneously. Either 'heads' or a 'tails' will occur, so if A offers both bets simultaneously she will be guaranteed to earn $\$1$. But the total of her bets is $\$1.02$, so net of her bets she will lose $\$0.02$ whatever the state of the world. A Dutch book has been made against her.
+
+In the nomenclature of finance a Dutch book is an arbitrage and the person making a Dutch book against an opponent is called an arbitrageur. For de Finetti the bookmaker whose gain is certain in a given bet is no different than the trader who earns a guaranteed profit by buying low and selling high when an asset is mispriced. Once seen through the lens of subjective probability, it becomes clear that what applies to mispriced assets also applies to misplaced probabilities. They are both examples of incoherent beliefs. 
+
+According to The Cambridge Dictionary of Philosophy (see @CambDictPhil), the Dutch book theorem can be stated as follows:
+
+> The proposition that anyone who (a) counts a bet on a proposition p as fair if the odds correspond to his degree of belief that p is true and who (b) is willing to make any combinations of bets he would regard individually as fair will be vulnerable to a Dutch book provided his degrees of belief do not conform to the axioms of of the probability calculus. Thus, anyone of whom (a) and (b) are true and whose degree of belief in a disjunction of two incompatible propositions is not equal to the sum of his degrees of belief in the two propositions taken individually would be vulnerable to a Dutch book.
+
+
+Through the price mechanism and the process of exchange agents's beliefs become coherent as people learn to avoid arbitrage. Again, this is true for security markets and for scholarship. The same market process of *tatonnement* operates in the market for goods and in the market for ideas. Market processes are information processes!
+
+The pursuit of truth that is held as inherently moral in the market for ideas is the same information dynamic that underlies financial and commodity trading. The difference is the relative kinds of knowledge that are processed in the respective markets. While the kinds of knowledge being processed in securities and commodities is more mundane, as Hayek wrote it is no less essential to an efficient, orderly, and rational economic order. 
+
+
+# The Dutch Book Argument
+
+
+I can now state the main argument of the paper. Given that the "market for goods" and the "market for ideas" are both examples of the same underlying information process: One cannot simultaneously belief that (a) the pursuit of knowledge in scholarship (intellectual arbitrage) is inherently moral, and that (b) the pursuit of trading profits in securities markets (financial arbitrage) is inherently immoral without becoming vulnerable to a Dutch book. 
+
+The "market for goods" and the "market for ideas" share a common moral foundation. The same criteria that we use to evaluate one should apply equally to the other.
+
+
+<!--
+# References
+\setlength{\parindent}{-0.2in}
+\setlength{\leftskip}{0.2in}
+\setlength{\parskip}{8pt}
+\vspace*{-0.2in}
+\noindent
+-->
+
+[^1]: For a book-length treatment of such tendencies on the part of intellectuals see @Sowell2009.
+[^2]: Elsewhere @Polanyi2000 has made a similar case.
+[^3]: See also @Kreps1988 who states that "the notion that prices contain and convey information is standard doctrine among economists."
+[^4]: Hayek wrote: "It is more than a metaphor to describe the price system as a kind of machinery for registering change, or a *system of telecommunications*." Emphasis added. 
+[^5]: See @PressaccoZiani2010.
+[^x]: @Polanyi2000 makes a similar argument regarding a knowledge problem in science. He writes: "Any attempt to organize the group ... under a single authority would eliminate their independent initiatives, and thus reduce their joint effectiveness to that of the single person directing them from the centre. It would, in effect, paralyse their co-operation." His argument regarding science can be extended to scholarship in general.
+[^y]: For a helpful review of state preference theory see Chapter 4 of @CopelandWestonShastri.
+[^n]: See the Routledge Dictionary of Economics entry on "Dutch books." 
