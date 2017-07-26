@@ -52,6 +52,9 @@ This is some latex: $\mu$ and $\sigma$
 
 This is an equation:
 
+$$
+dS_{t} = \mu S_{t} dt + \sigma S_{t} dZ_{t}
+$$
 
 
 <!--
