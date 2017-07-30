@@ -10,8 +10,9 @@ title: "Implementing the Heston Option Pricing Model in Object-Oriented Cython"
 author:
 - name: Brandon C. Hardin 
   affiliation: Utah State University
-abstract: "Abstract goes here!"
-keywords: "Heston, Python, Cython"
+abstract: "The 1973 Black-Scholes model, a revolutionary option pricing formula whose price is "relatively close" to observed prices, makes an asumption that the volatility is constant and thus, deterministic. This causes some inefficiencies and patterns in the pricing of options due to the model providing evidence of the "volitility smile" of the implied volatility. Many scholars have suggested that the volatility should be modelled by a stochastic process and the (1993) Heston Model is one of many proposed solutions to remedy this problem. The Heston Model allows for the "smile" by defining the volatitliy as a stochastic process. This thesis considers a solution to this problem by utilizing Heston's stochastic volitility model in conjunction with Euler's discretization scheme in a simple Monte Carlo engine. The application of this model has been implemented in object-oriented Cython, for it provides the simplicity of Python, all the while, providing C-like performance."
+Subject classifications: "Monte Carlo, Heston, Python, Cython"
+Area of review:: Financial Economics
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 geometry: margin=1in
 fontfamily: mathpazo
@@ -21,32 +22,32 @@ bibliography: ./master.bib
 biblio-style: apsr
 ---
 
-# Introduction
+# 1.Introduction
 
-This is where I will start writing my paper. Below is a rough outline. It will change as I need it to. 
+This 
 
-## The Heston Model
+## 2.The Heston Model
 
-## Monte Carlo Simulation
+## 3.Monte Carlo Simulation
 
-## Python Programming Language
+## 4.Python Programming Language
 
-# Implementing Option Pricing Models in Python
+# 5.Implementing Option Pricing Models in Python
 
-## Python 
+## 6.Python 
 
-## Cython
+## 7.Cython
 
-## Object-Oriented Programming
+## 8.Object-Oriented Programming
 
-## Design Patterns in Computational Finance
+## 9.Design Patterns in Computational Finance
 
 
-# The Heston Model in Cython
+# 10.The Heston Model in Cython
 
-# Numerical Examples
+# 11.Numerical Examples
 
-# Section with Math
+# 12.Section with Math
 
 This is some latex: $\mu$ and $\sigma$
 
