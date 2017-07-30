@@ -17,29 +17,7 @@ Type 'q()' to quit R.
 
 > library(rmarkdown)
 > render("draft.Rmd")
-
-
-processing file: draft.Rmd
-  |                                                                         |                                                                 |   0%  |                                                                         |.................................................................| 100%
-   inline R code fragments
-
-
-output file: draft.knit.md
-
-/usr/bin/pandoc +RTS -K512m -RTS draft.utf8.md --to latex --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash --output draft.tex --template svm-latex-ms.tex --highlight-style tango --latex-engine pdflatex --natbib --bibliography master.bib 
-This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
-The top-level auxiliary file: draft.aux
-I couldn't open style file apsr.bst
----line 3 of file draft.aux
- : \bibstyle{apsr
- :               }
-I'm skipping whatever remains of this command
-I found no \citation commands---while reading file draft.aux
-I found no style file---while reading file draft.aux
-(There were 3 error messages)
-
-Output created: draft.pdf
-> 
-> proc.time()
-   user  system elapsed 
-  1.148   0.716   1.228 
+Error in yaml::yaml.load(string, ...) : 
+  Parser error: while parsing a block mapping at line 1, column 1did not find expected key at line 12, column 97
+Calls: render ... parse_yaml_front_matter -> yaml_load_utf8 -> <Anonymous> -> .Call
+Execution halted
