@@ -85,7 +85,7 @@
 \hypersetup{breaklinks=true,
             bookmarks=true,
             pdfauthor={Brandon C. Hardin (Utah State University)},
-             pdfkeywords = {Heston, Python, Cython},  
+             pdfkeywords = {},  
             pdftitle={Implementing the Heston Option Pricing Model in Object-Oriented Cython},
             colorlinks=true,
             citecolor=blue,
@@ -130,13 +130,23 @@
 
     \vskip 8.5pt % \small 
 
-\noindent Abstract goes here!
+\noindent The 1973 Black-Scholes model, a revolutionary option pricing formula
+whose price is `relatively close to observed prices, makes an asumption
+that the volatility is constant and thus, deterministic. This causes
+some inefficiencies and patterns in the pricing of options due to the
+model providing evidence of the 'volitility smile' of the volatility.
+Many scholars have suggested that the volatility should be modelled by a
+stochastic process and the (1993) Heston Model is one of many proposed
+solutions to remedy this problem. The Heston Model allows for the
+`smile' by defining the volatitliy as a stochastic process. This thesis
+considers a solution to this problem by utilizing Heston's stochastic
+volitility model in conjunction with Euler's discretization scheme in a
+simple Monte Carlo engine. The application of this model has been
+implemented in object-oriented Cython, for it provides the simplicity of
+Python, all the while, providing C-like performance.
 
-
-\vskip 8.5pt \noindent \emph{Keywords}: Heston, Python, Cython \par
 
     \hbox{\vrule height .2pt width 39.14pc}
-
 
 
 \end{abstract}
@@ -144,36 +154,170 @@
 
 \vskip 6.5pt
 
-\noindent \doublespacing \section{Introduction}\label{introduction}
+\noindent \doublespacing \subsection{1.Introduction}\label{introduction}
 
-This is where I will start writing my paper. Below is a rough outline.
-It will change as I need it to.
+This thesis shall simulate the Heston Model by the use of Cython and
+thus, the reasoning behind the chosen model must be identified. The
+primary factor for the decision to implement the Heston Model was how it
+determines the evolution of volatility of the underlying asset. With the
+aid of continuous time diffusion models for volatility, the Heston Model
+derives its option pricing from a random process. Although the
+Black-Scholes model is widely supported, it is subject to
+inefficiencies, error and incorrectly pricing securities due to the
+assumption of constant volatility. If the Black-Scholes assumption were
+correct than, when viwing strike prices, the implied volatilities of
+same type options would be constant. This is not the case as patterns of
+volatilities varying by strike can be seen forming a smile curve or
+``volatility smile''. Stochastic volatility models were formulated in
+order to sove this problem. These models incorporate the verifiable
+observations, for which, the volatility of the model is a random
+process. In turn, volatility itself is made into stochastic process.
+Developed by Steven Heston, the widely used Heston (1993) model not only
+took time-dependent volatility into account, it also presents a
+stochastic process element. The Heston Model provides correlated shocks
+between asset returns and volatility. This assumption provides insight
+into the reasoning behind return skewness and strike-price biases in the
+Black-Scholes model. In addition, the Heston provides for the actuality
+of a semi-analytical resolution for European options. In this thesis, we
+shall institute a simulation of one of the most widely used stochastic
+volatility models, the Heston Model's volatility stochastic process. The
+implementation is inclusive of random-number generation in a Monte Carlo
+engine. Monte Carlo simulation is a vital technique used in option
+pricing as it not only provides an improvement in the efficiency of a
+simulation, but it does so by sampling a values randomly from all
+possible outcomes from the input probability distributions. The Monte
+Carlo simulation does this iteration as many times as specified and the
+result is a probability distribution of all possible outcomes. The Monte
+Carlo simulation implementation is quantified in Cython within the
+Python software . Python is a high-level programming language that is
+used in a variety of technical areas including finance. Although, Python
+is widely used for option pricing theory, the execution of the
+forementioned within a Cython environment is realtively new. In the next
+portion of this thesis, the Heston (1993) model shall be presented. \#\#
+2.Black-Scholes The most recognized widely used continuous time model is
+the Black-Scholes. With its simplistic nature and requirement of only
+five inputs: strik price, asset price, expiry, risk-free rate, and
+volatility, the Black-Scholes makes an assumption of an underlying
+asset,S, where it follows a geometric Brownian motion and we assume the
+drift and volatility is constant. The plain Black-Scholes model process
+is as follows: \[
+dS_{t} = \mu S_{t} dt + \sigma S_{t} dW_t,                          (2.1)
+\] where both\(\mu\), the drift and \(\sigma\), the volatility, are
+under the assumption of being constant. As the result of asset price
+changes are lognormal-distributions, which means that the values are
+positive and they create a right skewed curve, which is a disadvantage
+of the model. In addition, the Black-Scholes model has demonstrated an
+issue with being consistant with the market as far as implied volatility
+is concerned. Allow \(C_BS(S,K,T,r,I) = C_market)\) to denote the
+Black-Scholes price for a European call option with T time to expiry,
+strike price K, S is the value of the underlying asset, r is the
+risk-free rate and implied vol is the value of I, while making note that
+vol, which has a drastic effect on price is not visible. When
+calculating implied volatilites from market data, the same sigma should
+be detectable for all options on the same underlying asset, but this is
+not what is observed. The implied volatilities derived from market data
+are not constant as they vary with the strike price and time to expiry
+even when associated with the same underlying asset, which entails the
+formation of a skew or ``volatility smile.'' The implied volatilities
+also vary over the course of time in a stochastic fashion. This directly
+repudiates the assumptions of constant volatility that Black-Scholes
+states. A stochastic volatility model can remedy the Black-Scholes of
+this contradiction.
 
-\subsection{The Heston Model}\label{the-heston-model}
+\subsection{3.The Heston Model}\label{the-heston-model}
 
-\subsection{Monte Carlo Simulation}\label{monte-carlo-simulation}
+The evolution of the volatility of an underlying asset provides the
+reasoning behind the creation of the Heston Model. When there is an
+correlation between the asset price and volatility, it produces a
+closed-form solution and allows the model to make the addition of
+stochastic interest rates. The Heston (1993) model is based upon the
+following stochastic differential equations, which depicts the stock
+price and variance process diffusions as: \[
+dS_{t} = \mu S_{t} dt + \sqrt{v_{t}} S_{t} dz_{1,t}                 (3.1)
+\] \[ 
+d\sqrt{v_{t}} = -\beta \sqrt{v_{t}} dt + \delta dz_{2,t}            (3.2)
+\] Equation (2.1) assumes the underlying asset price follows the
+diffusion process at time t where where \(\mu\) is the drift parameter,
+and \(z_{1,t}\) is a standard Wiener process (i.e.~random walk). In
+equation (2.2) the volatility \(\sqrt{v_{t}}\) itself follows a
+diffusion process where \(z_{2,t}\) is a Wiener process, and \(\rho\)
+defines the correlation between \(z_{1,t}\) and \(z{2,t}\).
 
-\subsection{Python Programming
+Ito's lemma shows the variance process can be written as follows as the
+volatility follows an Orstein-Uhlenbeck (mean-reverting) process: \[
+dv_{t} = \kappa [\theta - v_{t}] dt + \sigma \sqrt{v_{t}} d z_{2,t} (3.3)
+\] where \(\theta\) is the long-run mean of the variance, \(\kappa\) is
+a mean reversion parameter and \(\sigma\) is the volatility of
+volatility. Utilizing this layout, the Heston (1993) provides the price
+of the call option as: \[
+Call(S,v,t) = S_{t} P_{1} - K P(t,T) P_{2}                          (3.4)
+\] where \(S_{t}\) is the spot price of the asset, \(K\) is the strike
+price of the option, \(P(t,T)\) is a discount factor from time \(t\) to
+time \(T\). If we assume a constant rate of interest \(r\), we can write
+this as: \[
+P(t,T) = \exp{-r \times (T - t)}                                    (3.5)
+\] Where \(P_{1}\) and \(P_{2}\) are the probabilities that the call
+option will expire in-the-money, subject to the log stock price
+\(x_{t} = ln[S_{t}]\), and on the volatility \(v_{t}\), each at time
+\(t\). Under the risk-neutral measure, these versions are given by: \[
+\begin{aligned} dx_{t} &= \left[r -\frac{1}{2}v_{t} \right] dt + \sqrt{v_{t}} dz_{1,t}^{\ast} \ dv_{t} &= \kappa \left[\theta - v_{t} \right] dt + \sigma \sqrt{v_{t}} dz_{2,t}^{\ast} \end{aligned}                                          (3.6)
+\] We have to descretize these SDE's in order to simulate them. Although
+there are no closed-form solutions for equaitons (2.6), we can still use
+the Euler disretization technique. But the draws variance equation
+produces will be negative values of volatility. While there are many
+ways to rectify this, we shall work directly with the natural logarithm
+of the varience. By utilizing It's lemma once more, we get the dynamics
+of \(\ln{(v_{t})}\) as follows: \[ 
+d \ln{(v_{t})} = \frac{1}{v_{t}} ( \kappa (\theta - v_{t}) - \frac{1}{2} \sigma^{2}) dt + \sigma\frac{1}{\sqrt{v_{t}}} dz_{2,t}^{\ast}       (3.7)
+\] Now we can execute the Euler discretization technique and we now have
+the following discrete time solutions:
+\[ \begin{aligned} \ln{(S_{t + \Delta t})} &= \ln{(S_{t})} + \left(r - \frac{1}{2} v_{t}\right) \Delta t + \sqrt{v_{t}}
+\sqrt{\Delta t} \varepsilon_{S,t+1}\ \ln{(v_{t + \Delta t})} &= \ln{(v_{t})} + \frac{1}{v_{t}} \left(\kappa (\theta -
+v_{t}) - \frac{1}{2} \sigma^{2}\right) \Delta t + \sigma \frac{1}{\sqrt{v_{t}}} \sqrt{\Delta t} \varepsilon_{v,t+1}
+\end{aligned}                                                       (3.8)
+\] Shocks to the volatility, \(\varepsilon_{v,t+1}\) are correlated with
+the shocks to the stock price process, \(\varepsilon_{S,t+1}\). This is
+denoted by \(\rho = Corr(\varepsilon_{v,t+1}, \varepsilon_{S,t+1})\) and
+the relationship between shocks can be written: \[
+ \varepsilon_{v,t+1} = \rho \varepsilon_{S,t+1} + \sqrt{1 - \rho^{2}} \varepsilon_{t+1}                 (3.9)
+\] where the \(\varepsilon_{t+1}\) are iid Standard Normal variables
+that each have zero correlation with \(\varepsilon_{S,t+1}\).
+
+\subsection{4.Monte Carlo Simulation}\label{monte-carlo-simulation}
+
+\subsection{5.Python Programming
 Language}\label{python-programming-language}
 
-\section{Implementing Option Pricing Models in
-Python}\label{implementing-option-pricing-models-in-python}
+From the Python website, you can find Python's executive
+summary(\url{https://www.python.org/doc/essays/blurb/}): Python is an
+interpreted, object-oriented, high-level programming language with
+dynamic semantics. Its high-level built in data structures, combined
+with dynamic typing and dynamic binding, make it very attractive for
+Rapid Application Development, as well as for use as a scripting or glue
+language to connect existing components together. Pythons simple, easy
+to learn syntax emphasizes readability and therefore reduces the cost of
+program maintenance. Python supports modules and packages, which
+encourages program modularity and code reuse. The Python interpreter and
+the extensive standard library are available in source or binary form
+without charge for all major platforms, and can be freely distributed.
+\#\# 6.Impementing Option Pricing Models in Python
 
-\subsection{Python}\label{python}
+\subsection{7.Python}\label{python}
 
-\subsection{Cython}\label{cython}
+\subsection{8.Cython}\label{cython}
 
-\subsection{Object-Oriented
+\subsection{9.Object-Oriented
 Programming}\label{object-oriented-programming}
 
-\subsection{Design Patterns in Computational
+\subsection{10.Design Patterns in Computational
 Finance}\label{design-patterns-in-computational-finance}
 
-\section{The Heston Model in Cython}\label{the-heston-model-in-cython}
+\subsection{10.The Heston Model in
+Cython}\label{the-heston-model-in-cython}
 
-\section{Numerical Examples}\label{numerical-examples}
+\subsection{12.Numerical Examples}\label{numerical-examples}
 
-\section{Section with Math}\label{section-with-math}
+\subsection{13.Section with Math}\label{section-with-math}
 
 This is some latex: \(\mu\) and \(\sigma\)
 
