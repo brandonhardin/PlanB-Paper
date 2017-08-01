@@ -232,56 +232,89 @@ correlation between the asset price and volatility, it produces a
 closed-form solution and allows the model to make the addition of
 stochastic interest rates. The Heston (1993) model is based upon the
 following stochastic differential equations, which depicts the stock
-price and variance process diffusions as: \[
+price and variance process diffusions as:
+
+\[
 dS_{t} = \mu S_{t} dt + \sqrt{v_{t}} S_{t} dz_{1,t}                 (3.1)
-\] \[ 
+\]
+
+\[ 
 d\sqrt{v_{t}} = -\beta \sqrt{v_{t}} dt + \delta dz_{2,t}            (3.2)
-\] Equation (2.1) assumes the underlying asset price follows the
-diffusion process at time t where where \(\mu\) is the drift parameter,
-and \(z_{1,t}\) is a standard Wiener process (i.e.~random walk). In
-equation (2.2) the volatility \(\sqrt{v_{t}}\) itself follows a
-diffusion process where \(z_{2,t}\) is a Wiener process, and \(\rho\)
-defines the correlation between \(z_{1,t}\) and \(z{2,t}\).
+\]
+
+Equation (2.1) assumes the underlying asset price follows the diffusion
+process at time t where where \(\mu\) is the drift parameter, and
+\(z_{1,t}\) is a standard Wiener process (i.e.~random walk). In equation
+(2.2) the volatility \(\sqrt{v_{t}}\) itself follows a diffusion process
+where \(z_{2,t}\) is a Wiener process, and \(\rho\) defines the
+correlation between \(z_{1,t}\) and \(z{2,t}\).
 
 Ito's lemma shows the variance process can be written as follows as the
-volatility follows an Orstein-Uhlenbeck (mean-reverting) process: \[
+volatility follows an Orstein-Uhlenbeck (mean-reverting) process:
+
+\[
 dv_{t} = \kappa [\theta - v_{t}] dt + \sigma \sqrt{v_{t}} d z_{2,t} (3.3)
-\] where \(\theta\) is the long-run mean of the variance, \(\kappa\) is
-a mean reversion parameter and \(\sigma\) is the volatility of
-volatility. Utilizing this layout, the Heston (1993) provides the price
-of the call option as: \[
+\]
+
+where \(\theta\) is the long-run mean of the variance, \(\kappa\) is a
+mean reversion parameter and \(\sigma\) is the volatility of volatility.
+Utilizing this layout, the Heston (1993) provides the price of the call
+option as:
+
+\[
 Call(S,v,t) = S_{t} P_{1} - K P(t,T) P_{2}                          (3.4)
-\] where \(S_{t}\) is the spot price of the asset, \(K\) is the strike
+\]
+
+where \(S_{t}\) is the spot price of the asset, \(K\) is the strike
 price of the option, \(P(t,T)\) is a discount factor from time \(t\) to
 time \(T\). If we assume a constant rate of interest \(r\), we can write
-this as: \[
+this as:
+
+\[
 P(t,T) = \exp{-r \times (T - t)}                                    (3.5)
-\] Where \(P_{1}\) and \(P_{2}\) are the probabilities that the call
-option will expire in-the-money, subject to the log stock price
+\]
+
+Where \(P_{1}\) and \(P_{2}\) are the probabilities that the call option
+will expire in-the-money, subject to the log stock price
 \(x_{t} = ln[S_{t}]\), and on the volatility \(v_{t}\), each at time
-\(t\). Under the risk-neutral measure, these versions are given by: \[
+\(t\). Under the risk-neutral measure, these versions are given by:
+
+\[
 \begin{aligned} dx_{t} &= \left[r -\frac{1}{2}v_{t} \right] dt + \sqrt{v_{t}} dz_{1,t}^{\ast} \ dv_{t} &= \kappa \left[\theta - v_{t} \right] dt + \sigma \sqrt{v_{t}} dz_{2,t}^{\ast} \end{aligned}                                          (3.6)
-\] We have to descretize these SDE's in order to simulate them. Although
+\]
+
+We have to descretize these SDE's in order to simulate them. Although
 there are no closed-form solutions for equaitons (2.6), we can still use
 the Euler disretization technique. But the draws variance equation
 produces will be negative values of volatility. While there are many
 ways to rectify this, we shall work directly with the natural logarithm
 of the varience. By utilizing It's lemma once more, we get the dynamics
-of \(\ln{(v_{t})}\) as follows: \[ 
+of \(\ln{(v_{t})}\) as follows:
+
+\[ 
 d \ln{(v_{t})} = \frac{1}{v_{t}} ( \kappa (\theta - v_{t}) - \frac{1}{2} \sigma^{2}) dt + \sigma\frac{1}{\sqrt{v_{t}}} dz_{2,t}^{\ast}       (3.7)
-\] Now we can execute the Euler discretization technique and we now have
+\]
+
+Now we can execute the Euler discretization technique and we now have
 the following discrete time solutions:
+
 \[ \begin{aligned} \ln{(S_{t + \Delta t})} &= \ln{(S_{t})} + \left(r - \frac{1}{2} v_{t}\right) \Delta t + \sqrt{v_{t}}
 \sqrt{\Delta t} \varepsilon_{S,t+1}\ \ln{(v_{t + \Delta t})} &= \ln{(v_{t})} + \frac{1}{v_{t}} \left(\kappa (\theta -
 v_{t}) - \frac{1}{2} \sigma^{2}\right) \Delta t + \sigma \frac{1}{\sqrt{v_{t}}} \sqrt{\Delta t} \varepsilon_{v,t+1}
 \end{aligned}                                                       (3.8)
-\] Shocks to the volatility, \(\varepsilon_{v,t+1}\) are correlated with
+\]
+
+Shocks to the volatility, \(\varepsilon_{v,t+1}\) are correlated with
 the shocks to the stock price process, \(\varepsilon_{S,t+1}\). This is
 denoted by \(\rho = Corr(\varepsilon_{v,t+1}, \varepsilon_{S,t+1})\) and
-the relationship between shocks can be written: \[
+the relationship between shocks can be written:
+
+\[
  \varepsilon_{v,t+1} = \rho \varepsilon_{S,t+1} + \sqrt{1 - \rho^{2}} \varepsilon_{t+1}                 (3.9)
-\] where the \(\varepsilon_{t+1}\) are iid Standard Normal variables
-that each have zero correlation with \(\varepsilon_{S,t+1}\).
+\]
+
+where the \(\varepsilon_{t+1}\) are iid Standard Normal variables that
+each have zero correlation with \(\varepsilon_{S,t+1}\).
 
 \subsection{4.Monte Carlo Simulation}\label{monte-carlo-simulation}
 
@@ -300,7 +333,9 @@ program maintenance. Python supports modules and packages, which
 encourages program modularity and code reuse. The Python interpreter and
 the extensive standard library are available in source or binary form
 without charge for all major platforms, and can be freely distributed.
-\#\# 6.Impementing Option Pricing Models in Python
+
+\subsection{6.Impementing Option Pricing Models in
+Python}\label{impementing-option-pricing-models-in-python}
 
 \subsection{7.Python}\label{python}
 
